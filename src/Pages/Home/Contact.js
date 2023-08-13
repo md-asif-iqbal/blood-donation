@@ -54,7 +54,7 @@ const Contact = () => {
                                     <div class="w-full">
                                         <h4 class="font-bold text-secondary text-xl mb-1">Our Location</h4>
                                         <p class="text-secondary">
-                                            Bhola, Bepari Bazar. Bangladesh
+                                            Dhaka, Bangladesh
                                         </p>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@ const Contact = () => {
                                     </div>
                                     <div class="w-full">
                                         <h4 class="font-bold text-secondary text-xl mb-1">Phone Number</h4>
-                                        <p class="text-secondary">+8801625112168</p>
+                                        <p class="text-secondary">+88010000000</p>
                                     </div>
                                 </div>
                                 <div class="flex mb-8 max-w-[370px] w-full">
@@ -131,7 +131,7 @@ const Contact = () => {
                                         <h4 class="font-bold text-secondary text-xl mb-1">
                                             Email Address
                                         </h4>
-                                        <p class="text-base text-secondary">mdabdullah120469@gmail.com</p>
+                                        <p class="text-base text-secondary">md.asifiqbal2008@gmail.com</p>
                                     </div>
                                 </div>
                             </div>

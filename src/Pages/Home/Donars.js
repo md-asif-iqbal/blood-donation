@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import DonarCard from '../Donars/DonarCard';
-import { Slide, Fade } from 'react-awesome-reveal';
-import Loading from '../Shared/Loading/Loading';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import DonarCard from "../Donars/DonarCard";
+import { Slide, Fade } from "react-awesome-reveal";
+import Loading from "../Shared/Loading/Loading";
 
 const Donars = () => {
     const [loading, setLoading] = useState(false)
@@ -52,6 +52,7 @@ const Donars = () => {
             </div>
         </div >
     );
+
 };
 
 export default Donars;

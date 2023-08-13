@@ -8,7 +8,6 @@ const useToken = (user) => {
         const email = user?.user?.email;
         const name = user?.user?.displayName;
         const image = user?.user?.photoURL;
-
         let currentUser;
         if (image) {
             currentUser = { email, name, image, role: "user" };
@@ -16,21 +15,22 @@ const useToken = (user) => {
             currentUser = { email, name, role: "user" };
         }
 
-        if (email) {
-            fetch(`https://blood-donation-server-03wj.onrender.com/user/${email}`, {
-                method: "PUT",
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(currentUser)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    const accessToken = data?.token;
-                    localStorage.setItem('accessToken', accessToken);
-                    setToken(accessToken)
-                })
-        }
+if (email) {
+    fetch(`http://localhost:8000/user/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(currentUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const accessToken = data?.token;
+        localStorage.setItem("accessToken", accessToken);
+        setToken(accessToken);
+      });
+}
+
 
     }, [user]);
     return [token];

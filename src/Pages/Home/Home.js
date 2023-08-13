@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '../Shared/Navbar/Navbar';
 import About from './About';
@@ -19,6 +20,7 @@ const Home = () => {
             <Contact />
         </div>
     );
+
 };
 
 export default Home;

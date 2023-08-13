@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../firebase.init';
-import Navbar from '../Shared/Navbar/Navbar';
-import BloodImg from '../../Assets/blood-drop.png'
-import { MdBloodtype, MdDateRange } from 'react-icons/md';
-import { ImLocation } from 'react-icons/im';
-import { BsPhoneVibrateFill } from 'react-icons/bs';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+
+import BloodImg from "../../Assets/blood-drop.png";
+import { MdBloodtype, MdDateRange } from "react-icons/md";
+import { ImLocation } from "react-icons/im";
+import { BsPhoneVibrateFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 const MyReqest = () => {
+
     const [myReqest, setMyRequest] = useState([])
     const [user] = useAuthState(auth)
     useEffect(() => {
@@ -20,8 +21,6 @@ const MyReqest = () => {
             .then((data) => setMyRequest(data));
     }, [user]);
     console.log(myReqest)
-
-    // Delete a Single Message 
 
     const handleDeleteMessage = (id) => {
         const proced = window.confirm("Are Your Sure Delete This Message");
@@ -61,8 +60,11 @@ const MyReqest = () => {
                     </div>)
                 }
             </div>
-        </div>
-    );
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default MyReqest;

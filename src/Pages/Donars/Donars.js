@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import donorsImg from '../../Assets/donors-bg.jpg'
-import BloodGrp from '../../Component/BloodGrp';
-import Location from '../../Component/Location';
-import Loading from '../Shared/Loading/Loading';
-import Navbar from '../Shared/Navbar/Navbar';
-import DonarCard from './DonarCard';
-import Pagination from './Pagination';
+import React, { useEffect, useState } from "react";
+import donorsImg from "../../Assets/donors-bg.jpg";
+import BloodGrp from "../../Component/BloodGrp";
+import Location from "../../Component/Location";
+import Loading from "../Shared/Loading/Loading";
+
+import DonarCard from "./DonarCard";
+import Pagination from "./Pagination";
 const Donars = () => {
 
     const [donars, setDonars] = useState([])
@@ -109,8 +109,8 @@ const Donars = () => {
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
             />
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Donars;
