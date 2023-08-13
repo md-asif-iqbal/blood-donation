@@ -1,11 +1,11 @@
 import React from 'react';
-import Footer from '../Shared/Footer/Footer';
 import Navbar from '../Shared/Navbar/Navbar';
 import About from './About';
 import Banner from './Banner';
 import Contact from './Contact';
 import Donars from './Donars';
 import Gallery from './Gallery';
+import TopUpAds from '../Shared/TopUpAds/TopUpAds';
 
 const Home = () => {
     return (
@@ -13,6 +13,7 @@ const Home = () => {
             <Navbar />
             <Banner />
             <About />
+            <TopUpAds />
             <Donars />
             <Gallery />
             <Contact />

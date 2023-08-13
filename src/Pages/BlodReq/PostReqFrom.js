@@ -18,7 +18,7 @@ const PostReqFrom = () => {
             district: data.district,
             date: data.date,
         };
-        fetch(`https://blood-donation-ai.onrender.com/bloodReq`, {
+        fetch(`https://blood-donation-server-03wj.onrender.com/bloodReq`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -35,7 +35,7 @@ const PostReqFrom = () => {
 
     return (
         <div className="flex justify-center items-center py-5">
-            <div className="card lg:w-10/12 drop-shadow-2xl">
+            <div className="card lg:w-11/12 drop-shadow-2xl">
                 <div className="card-body">
                     <h2 className="text-center my-3 text-white font-semibold  text-xl">
                         Emergency a Blood Request
