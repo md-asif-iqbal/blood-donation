@@ -1,0 +1,11 @@
+.buttons{
+    position: fixed;
+    width: 100%;
+    margin-left: 0%;
+    bottom: 30%;
+    height: 20px;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: rgb(246, 51, 51);
+    }

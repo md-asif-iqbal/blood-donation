@@ -2,12 +2,13 @@ import { initializeApp } from "firebase/app";
 
 import { getAuth } from "firebase/auth";
 const firebaseConfig = {
-    apiKey: "AIzaSyDr60ekEEFhS2N9BQi-MGWQ1xsPq6589q8",
-    authDomain: "airbnb-947fb.firebaseapp.com",
-    projectId: "airbnb-947fb",
-    storageBucket: "airbnb-947fb.appspot.com",
-    messagingSenderId: "632326844942",
-    appId: "1:632326844942:web:336932e429be1847bb025f"
+  apiKey: "AIzaSyDsCzXzs1XD1BnFXc8y6SULma4EDD9NqUs",
+  authDomain: "blood-donation-system-034.firebaseapp.com",
+  projectId: "blood-donation-system-034",
+  storageBucket: "blood-donation-system-034.appspot.com",
+  messagingSenderId: "392813715637",
+  appId: "1:392813715637:web:e6902f2ca1b0763f1d5efc",
+  measurementId: "G-BQ2Y81ZM55",
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

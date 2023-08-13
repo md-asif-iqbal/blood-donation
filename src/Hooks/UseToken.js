@@ -17,19 +17,19 @@ if (image) {
 }
 
 if (email) {
-    fetch(`https://blood-donation-ai.onrender.com/user/${email}`,{
-        method: "PUT",
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(currentUser)
+    fetch(`http://localhost:8000/user/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(currentUser),
     })
-    .then(res => res.json())
-    .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         const accessToken = data?.token;
-        localStorage.setItem('accessToken', accessToken);
-        setToken(accessToken)
-    })
+        localStorage.setItem("accessToken", accessToken);
+        setToken(accessToken);
+      });
 }
 
 },[user]);
