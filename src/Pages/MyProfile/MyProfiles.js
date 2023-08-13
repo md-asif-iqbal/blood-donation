@@ -28,15 +28,16 @@ const MyProfiles = () => {
   };
   const [userData, setUserData] = useState([]);
 
-  useEffect(() => {
-    const email = user?.email;
-    console.log(email);
-    const url = `https://blood-donation-ai.onrender.com/user/${email}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setUserData(data));
-  }, [userData]);
-  console.log(userData);
+    useEffect(() => {
+        const email = user?.email;
+        console.log(email);
+        const url = `https://blood-donation-server-03wj.onrender.com/user/${email}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setUserData(data))
+    }, [userData])
+    console.log(userData)
+
 
   return (
     <div>

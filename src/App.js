@@ -15,12 +15,12 @@ import './Style/Style.css'
 import Footer from './Pages/Shared/Footer/Footer';
 import Navbar from './Pages/Shared/Navbar/Navbar';
 import RegisterDonor from './Pages/Donars/RegisterDonor';
+
 const App = () => {
   return (
     <div>
       <Navbar />
 
-      <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/donars" element={<Donars />}></Route>
         <Route path="/login" element={<Login />}></Route>

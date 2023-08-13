@@ -34,7 +34,7 @@ const UpdateProfile = () => {
             education: data.education,
             district: data.district
           };
-          fetch(`https://blood-donation-ai.onrender.com/user/update/${user?.email}`, {
+          fetch(`https://blood-donation-server-03wj.onrender.com/user/update/${user?.email}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json",
