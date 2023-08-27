@@ -6,7 +6,6 @@ import { BsPhoneVibrateFill } from 'react-icons/bs';
 import UseBloodReq from '../../Hooks/UseBloodReq';
 const BloodReqShow = () => {
     const [bloodreq] = UseBloodReq()
-    console.log(bloodreq);
     return (
         <div>
             <h1 className='text-2xl font-mono font-semibold text-center text-gray-700 mb-2'>To Join As a <span className='border-b-4 border-primary'>Blood Donor</span> </h1>

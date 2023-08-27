@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 const UseBloodReq = () => {
     const [bloodReq, setBloodReq] = useState([])
     useEffect(() => {
-        fetch("https://blood-donation-server-03wj.onrender.com/bloodReq")
-            .then(res => res.json())
-            .then(data => setBloodReq(data))
+        fetch("http://localhost:8000/bloodReq")
+          .then((res) => res.json())
+          .then((data) => setBloodReq(data));
     }, [bloodReq])
     return [bloodReq]
 };

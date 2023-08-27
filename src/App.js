@@ -14,13 +14,13 @@ import ErrorPag from './Pages/Shared/Error/ErrorPag';
 import './Style/Style.css'
 import Footer from './Pages/Shared/Footer/Footer';
 import Navbar from './Pages/Shared/Navbar/Navbar';
-import RegisterDonor from './Pages/Donars/RegisterDonor';
+
 
 const App = () => {
   return (
     <div>
       <Navbar />
-
+      <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/donars" element={<Donars />}></Route>
         <Route path="/login" element={<Login />}></Route>
@@ -31,7 +31,7 @@ const App = () => {
         <Route path="/blog" element={<Blog />}></Route>
         <Route path="*" element={<ErrorPag />}></Route>
       </Routes>
-      <RegisterDonor />
+  
       <ToastContainer />
       <Footer />
     </div>
