@@ -9,15 +9,21 @@ import auth from "../../firebase.init";
 const DonarCard = ({ item }) => {
   const [request, setRequest] = useState([]);
   const [modalsData, setModalsData] = useState([]);
+
+  const [selectedData, setSelectedData] = useState(null);
   const openModals = (item) => {
+    setSelectedData(item)
     setModalsData(item);
-    console.log(item);
 
 
     const modal = document.getElementById("my_modal_034");
     if (modal) {
       modal.showModal();
     }
+  };
+
+  const handleCloseModal = () => {
+    setSelectedData(null);
   };
 
   const [user] = useAuthState(auth);
@@ -40,6 +46,7 @@ const DonarCard = ({ item }) => {
     const maskedPhoneNumber = "***********";
     return <span className="text-lg">{maskedPhoneNumber}</span>;
   };
+  console.log(selectedData);
 
   return (
     <>
@@ -132,17 +139,18 @@ const DonarCard = ({ item }) => {
                 className="bg-rose-500 text-white px-5 py-1 mb-5 rounded justify-center items-center"
                 onClick={() => {
                   openModals(item);
-                  setModalsData(item);
+                  setSelectedData
+                    (item);
                 }}
               >
                 Contact
               </button>
 
-              {modalsData ? (
+              {selectedData ? (
                 <>
                   <dialog id="my_modal_034" className="modal ">
                     <form method="dialog" className="modal-box ">
-                      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                      <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                         ✕
                       </button>
                       <>
