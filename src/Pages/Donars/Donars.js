@@ -13,7 +13,7 @@ const Donars = () => {
 
     const [filterBlood, setFilterBloodGrp] = useState([])
 
-console.log(filterItem ,'yes')
+
     // Pagination 
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(18);
@@ -33,18 +33,17 @@ console.log(filterItem ,'yes')
                 setLoading(false)
             })
     }, [])
-    console.log(donars);
 
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
-    const currentData = filterItem.slice(firstPostIndex, lastPostIndex);
-
+    const currentData = donars.slice(firstPostIndex, lastPostIndex);
+console.log(filterItem)
     const filterItemData = (categItem) => {
-        const updatedItems = donars?.filter((item) => {
+        const updatedItems = donars?.filter ((item) => {
             return item?.district === categItem;
         });
 
-        setFilterItem(updatedItems);
+        setDonars(updatedItems);
     }
 
     const filterBloodGrp = (blood) => {
@@ -52,7 +51,7 @@ console.log(filterItem ,'yes')
             return item?.bloodGrp === blood;
         });
 
-        setFilterItem(filterBlood);
+        setDonars(filterBlood);
     }
 
     const reverseItem = [...currentData].reverse();

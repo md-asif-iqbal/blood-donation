@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Fade, Slide } from "react-awesome-reveal";
-import { MdBloodtype, MdDateRange } from "react-icons/md";
-import { ImLocation } from "react-icons/im";
-import { BsPhoneVibrateFill } from "react-icons/bs";
+import { Fade } from "react-awesome-reveal";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DonarCard = ({ item }) => {
   const [request, setRequest] = useState([]);
   const [modalsData, setModalsData] = useState([]);
+  const [selectedData, setSelectedData] = useState(null);
   const openModals = (item) => {
+    setSelectedData(item);
     setModalsData(item);
-    console.log(item);
-
 
     const modal = document.getElementById("my_modal_034");
     if (modal) {
       modal.showModal();
     }
+  };
+
+  const handleCloseModal = () => {
+    setSelectedData(null);
   };
 
   const [user] = useAuthState(auth);
@@ -30,7 +34,6 @@ const DonarCard = ({ item }) => {
       .then((res) => res.json())
       .then((data) => setRequest(data));
   }, [user]);
-  // console.log(request[0].bloodGrp);
   const MaskedName = ({ name }) => {
     const maskedName = "*".repeat(name?.length);
     return <span className="text-lg">{maskedName}</span>;
@@ -39,6 +42,43 @@ const DonarCard = ({ item }) => {
   const MaskedPhoneNumber = ({ phoneNumber }) => {
     const maskedPhoneNumber = "***********";
     return <span className="text-lg">{maskedPhoneNumber}</span>;
+  };
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000); // Update every second
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+  const DonorConfirmation = () => {
+    const donorConfirmationData = {
+      DonorID: modalsData?._id,
+      Donorname: modalsData?.name,
+      Donoremail: modalsData?.email,
+      Donorphone: modalsData?.phone,
+      DonorbloodGrp: modalsData?.bloodGrp,
+      Donordistrict: modalsData?.district,
+      Requestorname: user?.displayName,
+      Requestoremail: user?.email,
+      Requestorphoto: user?.photoURL,
+      Confimationdate: currentDate,
+    };
+    fetch(`http://localhost:8000/donarConfirmation`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(donorConfirmationData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Confirmation Is Successful...😍");
+      });
+    console.log(donorConfirmationData);
   };
 
   return (
@@ -105,12 +145,7 @@ const DonarCard = ({ item }) => {
                   </div>
                 </div>
                 <h3 className="text-lg pt-4 text-gray-900">
-                  Name -{" "}
-                  {user && request ? (
-                    item.name
-                  ) : (
-                    <MaskedName name={item.name} />
-                  )}
+                  Name - <MaskedName name={item.name} />
                 </h3>
                 <h3 className="text-lg text-gray-900">
                   Blood Group - {item.bloodGrp}
@@ -118,31 +153,59 @@ const DonarCard = ({ item }) => {
                 <h3 className="text-lg text-gray-900">
                   Location - {item.district ? item.district : "Not Found"}
                 </h3>
-                <h3 className="text-lg text-gray-900 pb-4">
+                <h3 className="text-lg text-gray-900 ">
                   Phone -
-                  {user && request ? (
-                    item.phone
-                  ) : (
-                    <MaskedPhoneNumber phoneNumber={item.phone} />
-                  )}
+                  <MaskedPhoneNumber phoneNumber={item.phone} />
                 </h3>
               </div>
-              {/* You can open the modal using ID.showModal() method */}
-              <button
-                className="bg-rose-500 text-white px-5 py-1 mb-5 rounded justify-center items-center"
-                onClick={() => {
-                  openModals(item);
-                  setModalsData(item);
-                }}
-              >
-                Contact
-              </button>
 
-              {modalsData ? (
+              {request[0]?.email === user?.email && user ? (
+                <>
+                  <button
+                    className="bg-rose-500 text-white px-5 py-1 mb-5 rounded justify-center items-center"
+                    onClick={() => {
+                      openModals(item);
+                      setSelectedData(item);
+                    }}
+                  >
+                    Contact
+                  </button>
+                </>
+              ) : (
+                <>
+                  {user ? (
+                    <>
+                      <h3 className="text-md -mt-0 py-2 text-gray-900">
+                        Request first before see their information{" "}
+                        <Link
+                          className="text-rose-600 underline"
+                          to="/BloodReq"
+                        >
+                          click here
+                        </Link>
+                      </h3>
+                    </>
+                  ) : (
+                    <>
+                      <h3 className="text-md -mt-0 py-2 text-gray-900">
+                        Sign In or Sign Up first <br />
+                        <Link className="text-rose-600 underline" to="/login">
+                          click here
+                        </Link>
+                      </h3>
+                    </>
+                  )}
+                </>
+              )}
+
+              {selectedData ? (
                 <>
                   <dialog id="my_modal_034" className="modal ">
                     <form method="dialog" className="modal-box ">
-                      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                      <button
+                        onClick={handleCloseModal}
+                        className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                      >
                         ✕
                       </button>
                       <>
@@ -212,6 +275,13 @@ const DonarCard = ({ item }) => {
                           <h3 className="text-lg text-gray-900 pb-4">
                             Phone - {modalsData?.phone}
                           </h3>
+                          <button
+                            className="bg-rose-500 px-5 py-1 rounded text-white"
+                            type=""
+                            onClick={() => DonorConfirmation()}
+                          >
+                            Confirm
+                          </button>
                         </div>
                       </>
                     </form>

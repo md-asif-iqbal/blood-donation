@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import UseBloodReq from "../../../Hooks/UseBloodReq";
 import { useForm } from "react-hook-form";
 import "./Style.css";
 import auth from "../../../firebase.init";
@@ -9,12 +7,26 @@ import { toast } from "react-toastify";
 
 const TopUpAds = () => {
   const [user] = useAuthState(auth);
+  const [donars, setDonars] = useState([]);
   const [modal, setModal] = useState(false);
   const [close, setClose] = useState(true);
+  console.log(donars)
+  useEffect(() => {
+    const email = user?.email;
+    console.log(email);
+    const url = `http://localhost:8000/myDonar?email=${email}`;
+    fetch(url, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => setDonars(data));
+  }, [user]);
+  // console.log(donars)
   useEffect(() => {
     setModal(true);
   }, []);
-  const [bloodReq] = UseBloodReq();
+ 
+
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const donorsData = {
@@ -39,6 +51,8 @@ const TopUpAds = () => {
     console.log(data);
     setClose(false);
   };
+
+  
   return (
     <div className="relative ">
       {modal && (
